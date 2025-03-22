@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
+import { Card, Button, Container, Row, Col, Form, Pagination, Navbar, Nav } from "react-bootstrap";
 import { Contractor } from "../src/types/types";
 import "./FilterBar.css";
 import { FaBug, FaHammer, FaTimes } from "react-icons/fa";
 import { GiGrass } from "react-icons/gi";
+import { useNavigate } from "react-router-dom"; // 🔹 For navigation
 
 const categories = [
     { name: "Landscaping", icon: <GiGrass />, key: "landscaping" },
@@ -18,6 +19,7 @@ const ContractorList: React.FC = () => {
     const [filter, setFilter] = useState<string>("");
     const [currentPage, setCurrentPage] = useState(1);
     const cardsPerPage = 12;
+    const navigate = useNavigate(); // 🔹 Navigation Hook
 
     useEffect(() => {
         axios.get<Contractor[]>("http://localhost:5134/contractors")
@@ -49,6 +51,22 @@ const ContractorList: React.FC = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100">
+
+            {/* 🔹 Header Navbar */}
+            <Navbar bg="light" expand="lg" className="shadow-sm px-4">
+                <Navbar.Brand href="/">
+                    <img src="/brix_icon.ico" alt="Brix Contractors" width="40" height="40" className="d-inline-block align-top me-2" />
+                    <span className="fw-bold">Brix Contractors</span>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+
             <Container className="mt-4 d-flex flex-column align-items-center flex-grow-1">
                 {/* 🔍 Search Bar */}
                 <Form.Control 
@@ -90,7 +108,11 @@ const ContractorList: React.FC = () => {
                     {currentContractors.length > 0 ? (
                         currentContractors.map((contractor) => (
                             <Col key={contractor.contractorId} xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center">
-                                <Card className="mb-4 shadow-sm d-flex flex-column contractor-card">
+                                <Card 
+                                    className="mb-4 shadow-sm d-flex flex-column contractor-card"
+                                    onClick={() => navigate(`/contractor/${contractor.contractorId}`)} // 🔹 Navigate on Click
+                                    style={{ cursor: "pointer" }}
+                                >
                                     <Card.Img 
                                         variant="top" 
                                         src={contractor.contractorCoverPhoto} 
@@ -121,16 +143,13 @@ const ContractorList: React.FC = () => {
                 </Row>
             </Container>
 
-            {/* 📌 Pagination (Always Visible) */}
+            {/* 📌 Pagination at Bottom */}
             <Container className="pagination-container">
                 <Pagination className="justify-content-center">
-                    {/* ⬅️ Previous Button */}
                     <Pagination.Prev 
                         onClick={() => handlePageChange(currentPage - 1)} 
                         disabled={currentPage === 1} 
                     />
-
-                    {/* 🔢 Page Numbers (Always Shows at Least 1 Page) */}
                     {[...Array(Math.max(totalPages, 1))].map((_, index) => (
                         <Pagination.Item 
                             key={index + 1} 
@@ -140,14 +159,13 @@ const ContractorList: React.FC = () => {
                             {index + 1}
                         </Pagination.Item>
                     ))}
-
-                    {/* ➡️ Next Button */}
                     <Pagination.Next 
                         onClick={() => handlePageChange(currentPage + 1)} 
                         disabled={currentPage === totalPages || totalPages === 0} 
                     />
                 </Pagination>
             </Container>
+
         </div>
     );
 };

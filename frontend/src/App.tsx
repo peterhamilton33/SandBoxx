@@ -1,15 +1,16 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContractorList from "./ContractorList";
-import "bootstrap/dist/css/bootstrap.min.css";
+import ContractorDetails from "./ContractorDetails";
 
-
-const App: React.FC = () => {
-    return (
-        <div>
-            <h1 className="text-center mt-4">Find a Contractor</h1>
-            <ContractorList />
-        </div>
-    );
-};
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<ContractorList />} />
+        <Route path="/contractor/:id" element={<ContractorDetails />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
