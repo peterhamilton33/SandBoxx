@@ -1,0 +1,137 @@
+/* Search Bar */
+/* Pagination Container */
+
+/* Pagination Container */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Ensures vertical centering */
+    padding: 20px;
+}
+
+
+/* Gray Out Disabled Buttons */
+.pagination-container .page-item.disabled .page-link {
+    color: gray !important;
+    pointer-events: none;
+    background-color: #f8f9fa !important;
+}
+
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Disabled Pagination Button */
+  .pagination-container .page-item.disabled .page-link {
+    color: gray;
+    cursor: not-allowed;
+  }
+  
+  /* Ensure Cards are Properly Aligned */
+  .contractor-card {
+    width: 100%;
+    max-width: 280px;
+    min-width: 280px;
+    min-height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  /* Ensure Images Maintain Aspect Ratio */
+  .contractor-card img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+
+
+.search-bar {
+    width: 60%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Filter Bar */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Individual Filter Icons */
+  .filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: gray;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-item svg {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  
+  /* Active Filter */
+  .filter-item.active,
+  .filter-item:hover {
+    color: black;
+    transform: scale(1.1);
+  }
+  
+  /* Clear Filter Button */
+  .clear-filter {
+    color: red;
+  }
+  
+  .clear-filter:hover {
+    color: darkred;
+    transform: scale(1.1);
+  }
+  
+  /* Contractor Card Sizing */
+  .contractor-card {
+    width: 100%;
+    max-width: 280px;
+    min-width: 280px;
+    min-height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+  }
+  /* Pagination Container */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Disabled Pagination Button */
+  .pagination-container .page-item.disabled .page-link {
+    color: gray;
+    cursor: not-allowed;
+  }
+  
+  
+  /* Contractor Card Image */
+  .contractor-card img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
